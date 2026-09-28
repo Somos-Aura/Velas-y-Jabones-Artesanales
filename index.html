@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Velas y Jabones Artesanales — Crea tu negocio en 14 días</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky:#45C4DC;
+    --mint:#7BCB86;
+    --sun:#E7DE86;
+    --red:#E8432E;
+    --red-deep:#C92E1B;
+    --gold:#D6AA52;
+    --magenta:#D9386B;
+    --purple:#7A4397;
+    --ink:#15181D;
+    --paper:#FFFFFF;
+    --bg:#FAFAF8;
+    --text:#1B2430;
+    --muted:#5B6472;
+    --line:rgba(20,23,28,0.1);
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top:60px;}
+  body{margin:0; background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; line-height:1.55;}
+  h1,h2,h3,h4{font-family:'Poppins',sans-serif; margin:0; font-weight:800; color:var(--ink);}
+  p{margin:0;}
+  img,svg{display:block; max-width:100%;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    background:var(--red); color:#fff; text-decoration:none;
+    padding:17px 30px; border-radius:10px; font-weight:800; font-size:1rem;
+    border:none; cursor:pointer; transition:box-shadow .15s ease;
+    box-shadow:0 10px 22px -4px rgba(200,40,20,0.45);
+    animation:btn-pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes btn-pulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.05);}
+  }
+  .btn:hover{animation-play-state:paused; transform:translateY(-2px) scale(1.05); box-shadow:0 14px 28px -4px rgba(200,40,20,0.55);}
+  .btn.gold{background:var(--gold); color:#3a2c0e; box-shadow:0 8px 18px -4px rgba(214,170,82,0.5);}
+  .btn.small{padding:11px 20px; font-size:0.88rem;}
+  .btn.block{width:100%;}
+
+  /* Gradient band used behind bonuses/testimonials, like the real site */
+  .gradient-band{background:linear-gradient(165deg, var(--sky) 0%, var(--mint) 55%, var(--sun) 100%);}
+  .band-blue{background:var(--sky); color:#fff;}
+  .band-black{background:var(--ink); color:#fff;}
+  .band-gold{background:var(--gold); color:var(--ink);}
+
+  /* Top urgency bar */
+  .topbar{position:sticky; top:0; z-index:50; background:var(--ink); color:#fff; padding:10px 16px calc(10px + env(safe-area-inset-top,0px));}
+  .topbar-inner{max-width:1120px; margin:0 auto; display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; text-align:center;}
+  .topbar-msg{font-size:0.85rem; font-weight:600; display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .mini-clock{display:flex; gap:6px; font-variant-numeric:tabular-nums;}
+  .mini-clock span{background:var(--red); padding:3px 8px; border-radius:5px; font-weight:800; font-size:0.85rem;}
+  .topbar .btn.small{background:var(--red);}
+
+  /* Hero */
+  .hero{padding:0 0 48px; text-align:center; background:linear-gradient(165deg, var(--sky) 0%, var(--mint) 55%, var(--sun) 100%);}
+  .hero-title-band{background:#fff; padding:40px 24px;}
+  .hero h1{font-size:clamp(1.7rem, 3.6vw, 2.5rem); line-height:1.2; margin:0 auto; max-width:1120px;}
+  .badges{display:flex; gap:22px; justify-content:center; flex-wrap:wrap; margin-top:22px;}
+  .badge{font-weight:700; font-size:0.9rem; color:var(--ink); display:flex; align-items:center; gap:8px;}
+  .badge svg{color:var(--red);}
+  .hero-cta{margin-top:28px;}
+  .hero-sales-copy{margin:34px auto 0; text-align:center;}
+  .hsc-question{font-family:'Poppins',sans-serif; font-weight:800; font-size:1.15rem; color:var(--ink); margin-bottom:12px;}
+  .hsc-body{font-size:0.95rem; color:var(--ink); margin-bottom:14px; line-height:1.6;}
+  .hsc-list{list-style:none; margin:0 0 14px; padding:0; display:flex; flex-direction:column; gap:8px;}
+  .hsc-list li{font-size:0.92rem; font-weight:600; color:var(--ink);}
+  .hsc-offer{font-family:'Poppins',sans-serif; font-weight:800; font-size:1.1rem; color:var(--ink); margin-bottom:10px;}
+  .video-box{
+    position:relative; aspect-ratio:16/9; width:100%; margin:32px auto 0; border-radius:14px; overflow:hidden;
+    background:linear-gradient(150deg, var(--ink) 0%, #2b2f36 100%);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 24px 50px -18px rgba(0,0,0,0.35);
+  }
+  .play{width:64px; height:64px; border-radius:50%; background:var(--red); display:flex; align-items:center; justify-content:center; cursor:pointer;}
+
+  /* Section headers (band style, matches "DESCUBRE NUESTRO PLAN DE ESTUDIOS") */
+  .band-head{padding:34px 0; text-align:center;}
+  .band-head h2{font-size:clamp(1.3rem, 2.6vw, 1.7rem); color:#fff;}
+  .band-head p{margin-top:8px; font-size:0.9rem; opacity:0.92;}
+  .section{padding:52px 0;}
+  .section-head{max-width:680px; margin:0 0 32px;}
+  .section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
+  .section-head h2{font-size:clamp(1.4rem, 2.8vw, 1.9rem); color:var(--purple);}
+  .section-head p{margin-top:10px; color:var(--muted);}
+
+  .split{display:grid; gap:40px; align-items:center;}
+  @media(min-width:900px){.split{grid-template-columns:1fr 1fr;}}
+  .img-placeholder{
+    aspect-ratio:4/3; border-radius:14px;
+    background:linear-gradient(150deg, var(--sky), var(--mint));
+    display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:0.85rem;
+  }
+
+  /* Gallery */
+  .gallery{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+  @media(min-width:720px){.gallery{grid-template-columns:repeat(4,1fr);}}
+  #gallery-velas.gallery{
+    display:flex; flex-wrap:nowrap; overflow-x:auto; scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch; padding-bottom:10px; margin:0 -24px; padding-left:24px; padding-right:24px;
+  }
+  #gallery-velas.gallery .g-card{flex:0 0 44%; scroll-snap-align:start;}
+  @media(min-width:600px){#gallery-velas.gallery .g-card{flex:0 0 27%;}}
+  @media(min-width:900px){#gallery-velas.gallery .g-card{flex:0 0 19%;}}
+  #gallery-velas.gallery::-webkit-scrollbar{height:6px;}
+  #gallery-velas.gallery::-webkit-scrollbar-thumb{background:var(--sky); border-radius:10px;}
+  #gallery-jabones.gallery{
+    display:flex; flex-wrap:nowrap; overflow-x:auto; scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch; padding-bottom:10px; margin:0 -24px; padding-left:24px; padding-right:24px;
+  }
+  #gallery-jabones.gallery .g-card{flex:0 0 44%; scroll-snap-align:start;}
+  @media(min-width:600px){#gallery-jabones.gallery .g-card{flex:0 0 27%;}}
+  @media(min-width:900px){#gallery-jabones.gallery .g-card{flex:0 0 19%;}}
+  #gallery-jabones.gallery::-webkit-scrollbar{height:6px;}
+  #gallery-jabones.gallery::-webkit-scrollbar-thumb{background:var(--sky); border-radius:10px;}
+  .g-card{background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden;}
+  .g-thumb{aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; overflow:hidden; background:#f2f2ee;}
+  .g-thumb img{width:100%; height:100%; object-fit:contain;}
+  .g-thumb svg path{stroke:#fff !important;}
+  .g-thumb svg{width:32%; opacity:0.95;}
+  .g-body{padding:12px 14px 15px;}
+  .g-body h4{font-size:0.92rem; font-weight:700; margin:0 0 4px; color:var(--ink);}
+  .g-body p{font-size:0.78rem; color:var(--muted);}
+  .see-more{text-align:center; margin-top:26px;}
+
+  /* Tabs + accordion (matches VELAS/JABONES module cards) */
+  .tabs{display:flex; gap:28px; justify-content:center; margin-bottom:30px;}
+  .tab{background:none; border:none; cursor:pointer; font-family:'Poppins',sans-serif; font-weight:700; font-size:1.05rem; color:var(--gold); padding:6px 0; border-bottom:3px solid transparent;}
+  .tab.active{color:var(--gold); border-bottom-color:var(--gold);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .mod-grid{display:grid; gap:16px;}
+  @media(min-width:680px){.mod-grid{grid-template-columns:repeat(2,1fr);}}
+  .mod-card{border:1.5px solid #F1B6B2; border-radius:10px; padding:20px; text-align:center; background:#fff;}
+  .mod-card .mnum{font-family:'Poppins',sans-serif; font-weight:800; font-size:1.1rem; color:var(--ink);}
+  .mod-card .mtitle{font-size:0.78rem; letter-spacing:0.03em; color:var(--muted); margin:4px 0 16px; text-transform:uppercase;}
+  .mod-toggle{display:inline-flex; align-items:center; gap:8px; background:var(--gold); color:#3a2c0e; border:none; border-radius:7px; padding:10px 20px; font-weight:700; font-size:0.85rem; cursor:pointer; width:100%; justify-content:center;}
+  .mod-body{max-height:0; overflow:hidden; transition:max-height .25s ease; text-align:left;}
+  .mod-body ul{margin:14px 0 0; padding-left:18px; color:var(--muted); font-size:0.85rem;}
+  .mod-body li{margin-bottom:5px;}
+
+  /* Bonuses */
+  .bonus-head{text-align:center; max-width:900px; margin:0 auto 32px;}
+  .bonus-head h2{color:#fff; font-size:clamp(1.4rem,2.8vw,1.9rem);}
+  .bonus-head p{color:#fff; opacity:0.92; margin-top:10px;}
+  .bonus-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px;}
+  @media(min-width:600px){.bonus-grid{grid-template-columns:repeat(3,1fr);}}
+  @media(min-width:900px){.bonus-grid{grid-template-columns:repeat(4,1fr);}}
+  .bonus-card{background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 6px 14px -10px rgba(0,0,0,0.25);}
+  .bonus-thumb{aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; overflow:hidden; background:#f2f2ee;}
+  .bonus-thumb img{width:100%; height:100%; object-fit:contain;}
+  .bonus-thumb svg path{stroke:#fff !important;}
+  .bonus-body{padding:10px 12px 12px;}
+  .bonus-num{font-family:'Poppins',sans-serif; color:var(--magenta); font-weight:700; font-size:0.78rem;}
+  .bonus-card p.desc{font-size:0.72rem; color:var(--muted); margin:4px 0 8px;}
+  .strike{color:var(--ink); text-decoration:line-through; font-size:0.78rem; font-weight:600;}
+  .free-tag{color:var(--red); font-weight:800; font-size:0.78rem; letter-spacing:0.02em;}
+
+  /* Pricing */
+  .price-section{padding:64px 0; background:radial-gradient(ellipse 75% 70% at 50% 20%, #3a0f08 0%, var(--ink) 65%); text-align:center;}
+  .price-card{max-width:560px; margin:0 auto; background:#fff; border-radius:22px; padding:44px 34px; box-shadow:0 30px 70px -20px rgba(0,0,0,0.55); border:3px solid var(--gold);}
+  .price-badge{display:inline-block; background:var(--red); color:#fff; font-family:'Poppins',sans-serif; font-weight:800; font-size:0.85rem; padding:8px 20px; border-radius:100px; margin-bottom:18px; letter-spacing:0.02em;}
+  .price-eyebrow{font-family:'Poppins',sans-serif; font-weight:800; font-size:1.15rem; color:var(--ink);}
+  .price-off{color:var(--red);}
+  .price-old{color:var(--muted); text-decoration:line-through; font-size:1.2rem; margin-top:16px; font-weight:700;}
+  .price-new{font-family:'Poppins',sans-serif; font-weight:800; font-size:3.6rem; color:var(--red); margin:2px 0 24px; line-height:1;}
+  .clocks{display:flex; gap:22px; justify-content:center; margin-bottom:22px;}
+  .clock-item{display:flex; flex-direction:column; align-items:center; gap:6px;}
+  .offer-summary{max-width:440px; margin:0 auto 28px; text-align:left; display:flex; flex-direction:column; gap:13px;}
+  .offer-item{display:flex; align-items:flex-start; gap:10px; font-size:0.95rem; font-weight:700; color:var(--ink);}
+  .offer-item .check-dot{width:22px; height:22px; border-radius:50%; background:var(--mint); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;}
+  .offer-item .check-dot svg{color:#fff;}
+  .clock-circle{width:64px; height:64px; border-radius:50%; border:3px solid var(--red); display:flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-weight:800; font-size:1.3rem; color:var(--ink);}
+  .clock-label{font-size:0.65rem; font-weight:700; letter-spacing:0.05em; color:var(--muted);}
+  .pay-note{font-size:0.8rem; color:var(--muted); margin-top:22px;}
+
+  /* Objections */
+  .obj-grid{display:grid; gap:18px;}
+  @media(min-width:820px){.obj-grid{grid-template-columns:repeat(3,1fr);}}
+  .obj-card{background:#fff; border:1px solid var(--line); border-radius:12px; padding:24px;}
+  .obj-card svg{color:var(--red); margin-bottom:12px;}
+  .obj-card h4{font-size:1rem; margin-bottom:8px; color:var(--purple);}
+  .obj-card p{font-size:0.88rem; color:var(--muted);}
+
+  /* Black divider band */
+  .divider-black{background:var(--ink); color:#fff; padding:30px 0; text-align:center;}
+  .divider-black h2{color:#fff; font-size:clamp(1.15rem,2.2vw,1.5rem); max-width:760px; margin:0 auto;}
+
+  /* Guarantee */
+  .guarantee-tan{background:var(--gold); color:var(--ink); padding:26px 0; text-align:center;}
+  .guarantee-tan h2{font-size:clamp(1.2rem,2.4vw,1.55rem); color:var(--ink);}
+  .guarantee{background:var(--ink); color:#fff; padding:52px 0;}
+  .g3{display:grid; gap:22px;}
+  @media(min-width:820px){.g3{grid-template-columns:repeat(3,1fr);}}
+  .g3-card{text-align:center; padding:10px;}
+  .ribbon{width:76px; height:86px; margin:0 auto 16px;}
+  .g3-card h4{color:#fff; font-size:1rem; margin-bottom:10px;}
+  .g3-card p{font-size:0.86rem; color:#c7cbd1;}
+  .guarantee .see-more{margin-top:34px;}
+
+  /* Certificate */
+  .cert-section{padding:56px 0; text-align:center; background:#fff;}
+  .cert-eyebrow{color:var(--red); font-size:clamp(1.3rem,2.6vw,1.7rem);}
+  .cert-sub{color:var(--ink); font-weight:700; font-size:0.95rem; letter-spacing:0.02em; margin-top:6px;}
+  .cert-plate{
+    max-width:800px; margin:30px auto 0; border-radius:14px;
+    overflow:hidden; box-shadow:0 6px 18px -8px rgba(0,0,0,0.18);
+  }
+  .cert-plate img{width:100%; height:100%; display:block; object-fit:contain;}
+
+  /* Testimonials */
+  .testi-grid{
+    display:flex; flex-wrap:nowrap; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch; padding-bottom:10px;
+  }
+  .testi-grid .phone{flex:0 0 62%; scroll-snap-align:start;}
+  @media(min-width:600px){.testi-grid .phone{flex:0 0 32%;}}
+  @media(min-width:900px){.testi-grid .phone{flex:0 0 22%;}}
+  .testi-grid::-webkit-scrollbar{height:6px;}
+  .testi-grid::-webkit-scrollbar-thumb{background:#fff; border-radius:10px; opacity:0.6;}
+  .phone{background:var(--ink); border-radius:22px; padding:8px; box-shadow:0 20px 40px -20px rgba(0,0,0,0.4); overflow:hidden;}
+  .phone img{width:100%; height:100%; display:block; aspect-ratio:9/17; object-fit:contain; border-radius:14px; background:#ECE5DD;}
+  .bubble{background:#fff; border-radius:10px; padding:8px 10px; font-size:0.72rem; color:#333; max-width:80%; box-shadow:0 2px 4px rgba(0,0,0,0.08);}
+  .bubble.mine{align-self:flex-end; background:#DCF8C6;}
+
+  /* FAQ */
+  .faq-item{border-bottom:1px solid var(--line);}
+  .acc-head{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 4px; cursor:pointer; background:none; border:none; width:100%; text-align:left;}
+  .acc-head h4{font-size:0.98rem; font-weight:700; color:var(--ink);}
+  .acc-icon{transition:transform .2s ease; flex-shrink:0; color:var(--red);}
+  .faq-item.open .acc-icon{transform:rotate(45deg);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .25s ease;}
+  .acc-body p{padding:0 4px 18px; color:var(--muted); font-size:0.9rem;}
+
+  /* Footer */
+  footer{background:var(--ink); color:#c7cbd1; padding:40px 0 calc(40px + env(safe-area-inset-bottom,0px));}
+  footer p{font-size:0.76rem; line-height:1.6; color:#9aa1ab; margin-bottom:10px;}
+  .social-row{display:flex; gap:12px; margin-bottom:14px;}
+  .social-dot{width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.8rem; font-weight:700;}
+
+</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1997750237862651');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1997750237862651&ev=PageView&noscript=1"
+/></noscript>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-msg">⚡ Oferta por tiempo limitado — termina en:
+      <div class="mini-clock"><span id="mm">30</span>:<span id="ss">00</span></div>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-title-band">
+    <h1>Conviértete en experto en velas y jabones artesanales desde casa y crea un negocio rentable en 14 días</h1>
+  </div>
+  <div class="wrap">
+    <div class="video-box">
+      <iframe src="https://player.vimeo.com/video/1229606333?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" title="Velas y Jabones artesanales"></iframe>
+    </div>
+    <div class="hero-sales-copy">
+      <p class="hsc-question">¿Quieres emprender un negocio con poca inversión y alta demanda?</p>
+      <p class="hsc-body">Aprende a elaborar velas y jabones artesanales irresistibles que deleitan a los clientes y se venden a diario, con recetas prácticas, ingredientes fáciles de conseguir, una preparación sencilla y resultados increíbles.</p>
+      <ul class="hsc-list">
+        <li>💡 Consejos de ventas y precios para obtener grandes beneficios.</li>
+        <li>📋 Recetas exclusivas y fáciles de preparar.</li>
+        <li>🔧 Técnicas profesionales de producción y acabado para vender a gran escala y aumentar tus ganancias.</li>
+      </ul>
+      <p class="hsc-offer">🔥 ¡Todo esto por solo USD $30!</p>
+      <p class="hsc-body">Convierte tu pasión en ingresos con El Curso de velas y jabones artesanales: ¡el primer paso hacia tu propio negocio rentable!</p>
+    </div>
+    <div class="hero-cta">
+      <a class="btn" href="#precio">Haz clic aquí y comienza ahora</a>
+    </div>
+  </div>
+</header>
+
+<section class="section" style="text-align:center;">
+  <div class="wrap">
+    <h2 style="color:var(--purple); font-size:1.7rem; margin-bottom:24px;">¡Accede a las clases en línea y sorpréndete!</h2>
+    <img src="clases.webp" alt="Kit de afiliado - Curso de Velas y Jabones Artesanales" style="width:100%; border-radius:14px;">
+    <div class="see-more"><a class="btn" href="#precio">Haz clic aquí y comienza ahora</a></div>
+  </div>
+</section>
+
+<section class="band-blue band-head" style="padding:22px 0;">
+  <div class="wrap">
+    <h2>Aprenderás más de 100 recetas de velas y jabones artesanales en tendencia</h2>
+  </div>
+</section>
+<section class="section" style="padding-top:34px;">
+  <div class="wrap">
+    <div class="gallery" id="gallery-velas"></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:34px;">
+  <div class="wrap">
+    <div class="gallery" id="gallery-jabones"></div>
+  </div>
+</section>
+
+<section class="cert-section">
+  <div class="wrap">
+    <h2 class="cert-eyebrow">¡Incluye certificado personalizado con tu nombre!</h2>
+    <div class="cert-sub">Listo para imprimir y exhibir en tu negocio o en tu hogar</div>
+    <div class="cert-plate">
+      <img src="certificado.png" alt="Certificado personalizado de finalización del curso" loading="lazy">
+    </div>
+    <div style="margin-top:28px;"><a class="btn" href="#precio">Haz clic aquí y comienza ahora</a></div>
+  </div>
+</section>
+
+<section class="band-black band-head" id="temario">
+  <div class="wrap">
+    <h2>¡Descubre nuestro plan de estudios!</h2>
+    <p>Más de 120 clases y más de 21 horas de contenido para todo lo que necesitas</p>
+  </div>
+</section>
+<section class="section" style="padding-top:40px;">
+  <div class="wrap">
+    <div class="tabs">
+      <button class="tab active" data-tab="t-velas">Velas artesanales</button>
+      <button class="tab" data-tab="t-jabones">Jabones artesanales</button>
+    </div>
+    <div class="tab-panel active" id="t-velas">
+      <div class="mod-grid" id="mod-velas"></div>
+    </div>
+    <div class="tab-panel" id="t-jabones">
+      <div class="mod-grid" id="mod-jabones"></div>
+    </div>
+    <div style="margin-top:36px;">
+      <div class="mod-grid" id="mod-transversal"></div>
+    </div>
+    <div class="see-more" style="margin-top:36px;"><a class="btn" href="#precio">Haz clic aquí y comienza ahora</a></div>
+  </div>
+</section>
+
+<section class="gradient-band">
+  <div class="wrap" style="padding:56px 24px 60px;">
+    <div class="bonus-head">
+      <h2>¡Accede hoy mismo y obtén 18 bonus de regalo!</h2>
+      <p>¿Cuánto invertirías por todo este conocimiento para lanzar y hacer crecer tu propio negocio?</p>
+    </div>
+    <div class="bonus-grid" id="bonus-grid"></div>
+  </div>
+</section>
+
+<div class="guarantee-tan"><div class="wrap"><h2>Confianza asegurada: con nuestra garantía de 7 días</h2></div></div>
+<section class="guarantee">
+  <div class="wrap">
+    <div class="g3">
+      <div class="g3-card">
+        <svg class="ribbon" viewBox="0 0 76 86" fill="none"><circle cx="38" cy="34" r="28" fill="none" stroke="var(--gold)" stroke-width="3"/><text x="38" y="30" text-anchor="middle" fill="var(--gold)" font-size="11" font-weight="700">100%</text><text x="38" y="42" text-anchor="middle" fill="var(--gold)" font-size="6">DE GARANTIA</text><path d="M28 58l10 16 10-16" stroke="var(--gold)" stroke-width="2" fill="none"/></svg>
+        <h4>Garantía de satisfacción</h4>
+        <p>Si en 7 días no tienes el conocimiento y las técnicas para crear tus primeros productos artesanales de alta calidad, te devolvemos tu dinero. Sin preguntas.</p>
+      </div>
+      <div class="g3-card">
+        <svg class="ribbon" viewBox="0 0 76 86" fill="none"><circle cx="38" cy="34" r="28" fill="none" stroke="var(--gold)" stroke-width="3"/><text x="38" y="30" text-anchor="middle" fill="var(--gold)" font-size="11" font-weight="700">100%</text><text x="38" y="42" text-anchor="middle" fill="var(--gold)" font-size="6">DE GARANTIA</text><path d="M28 58l10 16 10-16" stroke="var(--gold)" stroke-width="2" fill="none"/></svg>
+        <h4>Garantía de soporte</h4>
+        <p>Si antes de los 7 días no recibes apoyo útil y respuestas claras de nuestro equipo o la comunidad, te devolvemos el 100% de tu dinero.</p>
+      </div>
+      <div class="g3-card">
+        <svg class="ribbon" viewBox="0 0 76 86" fill="none"><circle cx="38" cy="34" r="28" fill="none" stroke="var(--gold)" stroke-width="3"/><text x="38" y="30" text-anchor="middle" fill="var(--gold)" font-size="11" font-weight="700">100%</text><text x="38" y="42" text-anchor="middle" fill="var(--gold)" font-size="6">DE GARANTIA</text><path d="M28 58l10 16 10-16" stroke="var(--gold)" stroke-width="2" fill="none"/></svg>
+        <h4>Garantía de plataforma</h4>
+        <p>Si en los primeros 7 días sientes que la plataforma no es fácil de usar o te resulta complicada de navegar, te devolvemos tu inversión.</p>
+      </div>
+    </div>
+    <div class="see-more"><a class="btn" href="#precio">Haz clic aquí y comienza ahora</a></div>
+  </div>
+</section>
+
+<section class="section" style="background:#fff;">
+  <div class="wrap">
+    <div class="section-head center">
+      <h2 style="color:#000;">Las 3 excusas que pueden hacerte perder esta oportunidad</h2>
+    </div>
+    <div class="obj-grid">
+      <div class="obj-card">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <h4>"No tengo tiempo suficiente"</h4>
+        <p>El curso es 100% online y flexible: lo adaptas a tu horario y avanzas a tu propio ritmo, incluso con solo minutos al día.</p>
+      </div>
+      <div class="obj-card">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l2.6 5.9L21 10l-4.8 4L17.6 21 12 17.8 6.4 21 8 14l-5-4 6.4-1.1z"/></svg>
+        <h4>"No soy lo suficientemente creativa"</h4>
+        <p>El curso está diseñado para guiar a principiantes paso a paso, desarrollando habilidades técnicas y creativas con facilidad.</p>
+      </div>
+      <div class="obj-card">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        <h4>"Puedo aprender gratis en internet"</h4>
+        <p>Los tutoriales gratuitos suelen carecer de estructura. Aquí tienes contenido organizado, mentoría experta y una comunidad de apoyo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gradient-band">
+  <div class="wrap" style="padding:56px 24px;">
+    <div class="section-head center" style="max-width:600px;">
+      <h2 style="color:#fff;">Testimonios de nuestras estudiantes</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="phone"><img src="testi-1.jpg" alt="Testimonio de estudiante 1" loading="lazy"></div>
+      <div class="phone"><img src="testi-2.jpg" alt="Testimonio de estudiante 2" loading="lazy"></div>
+      <div class="phone"><img src="testi-3.jpg" alt="Testimonio de estudiante 3" loading="lazy"></div>
+      <div class="phone"><img src="testi-4.jpg" alt="Testimonio de estudiante 4" loading="lazy"></div>
+      <div class="phone"><img src="testi-5.jpg" alt="Testimonio de estudiante 5" loading="lazy"></div>
+      <div class="phone"><img src="testi-6.jpg" alt="Testimonio de estudiante 6" loading="lazy"></div>
+      <div class="phone"><img src="testi-7.jpg" alt="Testimonio de estudiante 7" loading="lazy"></div>
+      <div class="phone"><img src="testi-8.jpg" alt="Testimonio de estudiante 8" loading="lazy"></div>
+      <div class="phone"><img src="testi-9.jpg" alt="Testimonio de estudiante 9" loading="lazy"></div>
+      <div class="phone"><img src="testi-10.jpg" alt="Testimonio de estudiante 10" loading="lazy"></div>
+      <div class="phone"><img src="testi-11.jpg" alt="Testimonio de estudiante 11" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section class="price-section" id="precio">
+  <div class="wrap">
+    <div class="price-card">
+      <div class="price-badge">⚡ Últimos cupos con este precio</div>
+      <div class="price-eyebrow">INSCRÍBETE HOY<br>CON EL <span class="price-off">50%</span> DE DESCUENTO</div>
+      <div class="price-old">$60 USD</div>
+      <div class="price-new">$30 USD</div>
+      <div class="offer-summary">
+        <div class="offer-item"><span class="check-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Curso completo de velas y jabones artesanales (+120 clases, +21 horas de contenidos)</div>
+        <div class="offer-item"><span class="check-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Los 18 bonus de regalo</div>
+        <div class="offer-item"><span class="check-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Certificado personalizado</div>
+        <div class="offer-item"><span class="check-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Acceso de por vida desde cualquier dispositivo</div>
+        <div class="offer-item"><span class="check-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Derecho a actualizaciones futuras sin costo</div>
+        <div class="offer-item"><span class="check-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Comunidad VIP y acompañamiento</div>
+        <div class="offer-item"><span class="check-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Garantía de 7 días</div>
+      </div>
+      <a class="btn" href="https://go.hotmart.com/I107533387H?ap=b04a" target="_blank" rel="noopener noreferrer">Haz clic para comprar</a>
+      <div class="pay-note">Procesado de forma 100% segura mediante Hotmart</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:#fff;">
+  <div class="wrap" style="max-width:760px;">
+    <div class="section-head center">
+      <h2 style="color:var(--purple);">Preguntas frecuentes</h2>
+    </div>
+    <div id="faq"></div>
+    <div class="see-more"><a class="btn small" href="https://go.hotmart.com/I107533387H?ap=b04a" target="_blank" rel="noopener noreferrer">¡Voy a emprender ahora!</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p style="text-align:center; font-weight:700;">TODOS LOS DERECHOS RESERVADOS 2026</p>
+    <p>Los testimonios incluidos en este sitio corresponden a experiencias reales de personas que han tomado el entrenamiento y fueron compartidos de forma voluntaria.</p>
+  </div>
+</footer>
+</div>
+
+<script>
+// Sticky top bar countdown: independent 30-minute timer
+let topbarSeconds = 30 * 60;
+function tickTopbar(){
+  if(topbarSeconds < 0) topbarSeconds = 30*60;
+  const mm = String(Math.floor(topbarSeconds/60)).padStart(2,'0');
+  const ss = String(topbarSeconds%60).padStart(2,'0');
+  document.getElementById('mm').textContent = mm;
+  document.getElementById('ss').textContent = ss;
+  topbarSeconds--;
+}
+tickTopbar(); setInterval(tickTopbar,1000);
+
+// Price section countdown removed — replaced with offer summary
+
+function candleIcon(){return '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4"><path d="M9 3c0 1.5-1.5 2-1.5 3.5S9 8 9 8"/><path d="M8 8h4v11a2 2 0 01-2 2 2 2 0 01-2-2V8z"/></svg>';}
+const tileColors = ['var(--sky)','var(--mint)','var(--sun)','var(--gold)','var(--magenta)','var(--purple)'];
+
+const velas = [["Vela Iceberg","Técnica en gel, diseño luminoso","vela-1.webp"],["Vela Marmolizada","Técnica de mármol combinada","vela-2.webp"],["Vela Suculenta","Realista, estilo natural","vela-3.webp"],["Técnica Repostería","Diseño dulce y detallado","vela-4.webp"],["Vela Ponqué","Un toque dulce y realista","vela-5.webp"],["Vela Microperlada","Acabado brillante y elegante","vela-6.webp"],["Vela Hidratante","Aroma y cuidado para la piel","vela-7.webp"],["Vela Capuchino","Diseño que imita café cremoso","vela-8.webp"],["Velones","Grandes, luz cálida","vela-9.webp"],["Vela en Vaso","Práctica y decorativa","vela-10.webp"],["Vela en Molde","Diseño creativo y personal","vela-11.webp"],["Bouquet en Ramo","Combinación aromática para regalar","vela-12.webp"],["Vela de Cerezas","Diseño festivo con detalle brillante","vela-13.webp"],["Vela Degradado Rosa","Efecto ombré con brillos","vela-14.webp"],["Vela Iced Latte","Aroma a café con diseño realista","vela-15.webp"],["Fresas de Cera","Diseño tierno en forma de fresa","vela-16.webp"],["Vela de Cera de Abeja","Hecha a mano, estilo rústico","vela-17.webp"],["Osito en Ponqué","Tierno diseño para regalo","vela-18.webp"],["Vela Botella de Cerveza","Diseño realista y divertido","vela-19.webp"],["Vela de Cumpleaños Personalizada","Ideal para celebraciones especiales","vela-20.webp"],["Árboles de Navidad","Diseño festivo detallado","vela-21.webp"],["Vela Copa Navideña","Decoración festiva con lazo y figura","vela-22.webp"],["Vela Burbuja Navideña","Textura de burbujas con acebo","vela-23.webp"],["Vela con Figuras de Nieve","Escena navideña en su interior","vela-24.webp"],["Vela Waffles","Diseño dulce y realista","vela-25.webp"],["Vela Reno Navideño","Diseño tierno para la temporada","vela-26.webp"],["Vela Grinch","Diseño divertido y temático","vela-27.webp"],["Vela Esfera Floral","Diseño elegante tipo porcelana","vela-28.webp"],["Vela Ponqué de Rosas","Diseño elegante con flores","vela-29.webp"],["Vela Muffin","Realista, aroma a chocolate","vela-30.webp"],["Crema de Cera Azul","Textura suave, ideal para difusores","vela-31.webp"],["Wax Melts Exprimibles","Práctico y fácil de usar","vela-32.webp"],["Vela Cristal Azul","Diseño geológico llamativo","vela-33.webp"],["Velas de Concreto Marmoleado","Set decorativo elegante","vela-34.webp"],["Osos de Cera","Diseño tierno, ideal para regalo","vela-35.webp"],["Velas Acanaladas","Colección minimalista y moderna","vela-36.webp"],["Vela Esfera","Diseño minimalista y elegante","vela-37.webp"]];
+const jabones = [["Jabón Carbón Activado","Purificante y detox","jabon-1.webp"],["Jabón de Cacao","Hidratante, aroma a chocolate","jabon-6.webp"],["Jabón de Café","Exfoliante y energizante","jabon-3.webp"],["Jabón Avena y Miel","Suave e hidratante","jabon-4.webp"],["Jabón de Arroz","Exfoliante y aclarador","jabon-5.webp"],["Jabón de Lufa","Exfoliante natural","jabon-7.webp"],["Jabón de Lavanda","Relajante y aromático","jabon-8.webp"],["Jabón de Manzanilla","Calmante, piel sensible","jabon-9.webp"],["Jabón de Cúrcuma","Revitalizante","jabon-10.webp"],["Jabón de Caléndula","Cicatrizante y suave","jabon-11.webp"],["Jabón de Romero","Tonificante","jabon-12.webp"],["Jabón Incrustado","Diseño decorativo único","jabon-13.webp"],["Jabón Terracota en Capas","Diseño multicapa con flores secas","jabon-2.webp"],["Jabón de Glicerina Natural","Suave, transparente e hidratante","jabon-14.webp"],["Jabón Masajeador de Aloe","Textura ideal para masaje relajante","jabon-15.webp"],["Jabón Líquido Artesanal","Perfecto para manos y cuerpo","jabon-16.webp"],["Jabón en Racimo de Uvas","Diseño divertido en forma de fruta","jabon-17.webp"],["Jabón Espiral Multicolor","Diseño en espiral, ideal para regalo","jabon-18.webp"],["Jabón en Forma de Rosa","Elegante y romántico para regalar","jabon-19.webp"],["Jabón Paleta Tricolor","Diseño divertido en forma de paleta","jabon-20.webp"]];
+
+function fillGallery(id, items){
+  document.getElementById(id).innerHTML = items.map(([t,d,img],i)=>`
+    <div class="g-card">
+      <div class="g-thumb" ${img ? '' : `style="background:${tileColors[i%tileColors.length]}"`}>${img ? `<img src="${img}" alt="${t}" loading="lazy">` : candleIcon()}</div>
+      <div class="g-body"><h4>${t}</h4><p>${d}</p></div>
+    </div>`).join('');
+}
+fillGallery('gallery-velas', velas);
+fillGallery('gallery-jabones', jabones);
+
+const bonuses = [
+  ["1","Bombas de Baño","Descubre el placer extra con estos bonus de bombas de baño","15","bonus-1.png"],
+  ["2","Velas Navideñas","Ilumina tu Navidad con el aroma de velas festivas","20","bonus-2.webp"],
+  ["3","Shampoo en Barra","Nutre tu cabello y cuida el planeta","10","bonus-3.webp"],
+  ["4","Decora tus Envases","Personaliza tus envases con estilo único","16","bonus-4.webp"],
+  ["5","Mantequilla Corporal","Hidrata tu piel a profundidad","15","bonus-5.webp"],
+  ["6","Velas en Fechas Especiales","Celebra cada fecha especial del año","25","bonus-6.webp"],
+  ["7","Bálsamo Labial","Luce labios suaves e hidratados","18","bonus-7.webp"],
+  ["8","Lista de Proveedores","Encuentra aquí los mejores proveedores","30","bonus-8.webp"],
+  ["9","Varitas Difusoras","Ambienta tus espacios con estilo","17","bonus-9.webp"],
+  ["10","Calendario de Adviento","Aprende a hacer esta caja sorpresa","20","bonus-10.webp"],
+  ["11","Comunidad VIP","Acompañamiento en cada paso hacia tus metas","20","bonus-11.webp"],
+  ["12","Nuevas Empresarias","Empodera tu camino con nuestro módulo de negocios","25","bonus-12.webp"],
+  ["13","Certificado Internacional","Expande tus oportunidades con un certificado","35","bonus-13.webp"],
+  ["14","Velas para Manifestación","Potencia tus intenciones con estas velas","10","bonus-14.webp"],
+  ["15","100 Recetas de Jabones","Más de 100 recetas artesanales","16","bonus-15.webp"],
+  ["16","Saponificación en Frío","Domina esta técnica paso a paso","35","bonus-16.webp"],
+  ["17","Desmaquillante Natural","Sin químicos, cuida tu piel","12","bonus-17.webp"],
+  ["18","Actualizaciones","Mantente siempre al día con contenido nuevo","30","bonus-18.webp"],
+];
+document.getElementById('bonus-grid').innerHTML = bonuses.map(([n,t,d,p,img])=>`
+  <div class="bonus-card">
+    <div class="bonus-thumb"><img src="${img}" alt="Bonus ${n}: ${t}" loading="lazy"></div>
+    <div class="bonus-body">
+      <div class="bonus-num">#${n} Bonus ${t}</div>
+      <p class="desc">${d}</p>
+      <div class="strike">${p} USD</div>
+      <div class="free-tag">GRATIS HOY</div>
+    </div>
+  </div>`).join('');
+
+const modVelas = [
+  ["1","Cómo consumir el programa",["Conoce tus mentores","Conoce la plataforma","Cuánto dinero necesito para iniciar","Lista de proveedores para velas artesanales","Lista de proveedores para jabones artesanales","Comunidad de apoyo"]],
+  ["2","Tu primera vela artesanal",["Términos comunes","Ceras que se manejan en el programa","Aceite Vs fragancias","Colorantes","Mezcla de ceras","Aprende de pabilos","Densidad de la cera Vs agua","Tu primera vela (primer proyecto)"]],
+  ["3","Velas básicas",["Bubble pastel","Figuras aromáticas","Marmoleada en molde de silicona","Vela hidratante para tu piel","Endurecedor natural","Velón básico en parafina china","Cera micro perlada","Limpieza de utensilios","Vela en gel en molde"]],
+  ["4","Velas intermedias",["Pergamino","Revelación de género","Souvenir","Vela sorpresa","Cera micro perlada + agua","Cera micro perlada en capas","Coronita en botella","Intencionales (pasión y protección)","Técnica a 45 grados","Vela efecto horneable","Vela efecto porcelana - barnizada","Waxmelt cuchariable","Waxmelt squeezable o exprimible"]],
+  ["5","Velas avanzadas",["Ponquesito","Iceberg","Glitter","Capuchino","Suculentas","Sandía","Feliz cumpleaños - Confeti","Cheesecake","Ice latte","Pop corns","Proyecto decorativo en yeso \"Alabastro\"","Bouquet de ramos","Vela tipo cuarzo"]],
+  ["6","Moldes en 3D",["Teoría para moldes en silicona","Materiales para tus moldes","Proceso de elaboración","Desmoldado del molde","Pulido y final"]],
+];
+const modJabones = [
+  ["1","Tu primer jabón artesanal",["Jabón de glicerina","Alcohol al 96","Extractos vegetales","Aceites vegetales","Aditivos naturales","Fragancias","Bases de glicerina","Colorantes","Tu primer jabón (primer proyecto)"]],
+  ["2","Jabones exfoliantes",["Jabón de café","Jabón de lufa","Jabón de arroz"]],
+  ["3","Jabones hidratantes",["Jabón de chocolate","Jabón de almendras","Jabón de avena y miel"]],
+  ["4","Jabones medicinales y terapéuticos",["Jabón de manzanilla","Jabón de cúrcuma","Jabón de lavanda","Jabón de romero","Jabón de caléndula"]],
+  ["5","Jabones de cuidado facial",["Jabón de carbón activado","Jabón de aloe vera","Jabón de limón"]],
+  ["6","Jabones decorativos",["Jabón incrustado","Jabón ponquesito"]],
+  ["7","Jabones de rituales",["Jabón afrodisíaco","Jabón de abundancia"]],
+];
+const modTransversal = [
+  ["","Módulo experiencia de usuario",["Cómo empacar tus productos","Embalaje para tus productos"]],
+  ["","Módulo domina tus finanzas",["Calculadora de costos y presupuesto de velas artesanales","Calculadora de costos y presupuesto de jabones artesanales","Tu ruta a la rentabilidad - Conoce tu punto de equilibrio","Finanzas para la vida – Estrategias financieras para emprendedores"]],
+  ["","Emprendimiento",["Emprendimiento digital: presentación, investigación de mercado, crea tu negocio digital (Facebook, Instagram, TikTok), diseña tu marca única, crea tu portafolio y etiquetas, estrategias de cierre efectivo","Emprendimiento físico: configura tu negocio en Google Maps, identidad visual, técnicas de atención al cliente, proyecta confianza y profesionalismo, estrategias comerciales para triunfar"]],
+];
+function fillModules(id, items){
+  document.getElementById(id).innerHTML = items.map(([n,title,lessons],i)=>`
+    <div class="mod-card">
+      ${n ? `<div class="mnum">MÓDULO ${n}</div><div class="mtitle">${title}</div>` : `<div class="mnum" style="margin-bottom:16px;">${title}</div>`}
+      <button class="mod-toggle" data-m="${id}-${i}">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        VER MÁS
+      </button>
+      <div class="mod-body"><ul>${lessons.map(l=>`<li>${l}</li>`).join('')}</ul></div>
+    </div>`).join('');
+}
+fillModules('mod-velas', modVelas);
+fillModules('mod-jabones', modJabones);
+fillModules('mod-transversal', modTransversal);
+
+const faqs = [
+  ["¿Cuánto tiempo dura el curso?","La duración es flexible: tienes acceso ilimitado y avanzas a tu propio ritmo."],
+  ["¿Cómo y cuándo recibiré el curso?","Recibirás un correo tras el pago con las instrucciones para entrar a la plataforma de Hotmart. Acceso de por vida."],
+  ["¿Cuáles son los métodos de pago?","Tarjetas de débito/crédito, PayPal, y pago en efectivo en países seleccionados (OXXO, Efecty, entre otros)."],
+  ["¿El pago es seguro?","Sí, se procesa a través de Hotmart, con certificados de seguridad y presencia en más de 160 países."],
+  ["¿Necesito experiencia previa?","No. El curso está diseñado para llevarte de cero a avanzado, paso a paso."],
+];
+document.getElementById('faq').innerHTML = faqs.map(([q,a],i)=>`
+  <div class="faq-item">
+    <button class="acc-head" data-i="faq-${i}">
+      <h4>${q}</h4>
+      <span class="acc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+    </button>
+    <div class="acc-body"><p>${a}</p></div>
+  </div>`).join('');
+
+document.addEventListener('click', (e) => {
+  const modBtn = e.target.closest('.mod-toggle');
+  if(modBtn){
+    const card = modBtn.closest('.mod-card');
+    const body = card.querySelector('.mod-body');
+    const open = card.classList.toggle('open');
+    body.style.maxHeight = open ? body.scrollHeight + 'px' : null;
+  }
+  const faqHead = e.target.closest('.acc-head');
+  if(faqHead){
+    const item = faqHead.closest('.faq-item');
+    const body = item.querySelector('.acc-body');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(o=>{if(o!==item){o.classList.remove('open'); o.querySelector('.acc-body').style.maxHeight=null;}});
+    item.classList.toggle('open');
+    body.style.maxHeight = isOpen ? null : body.scrollHeight + 'px';
+  }
+  const tab = e.target.closest('.tab');
+  if(tab){
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  }
+});
+</script>
+<script>
+/* Meta Pixel: InitiateCheckout al hacer clic en los botones que van a Hotmart */
+document.addEventListener('click', function(e){
+  var a = e.target.closest && e.target.closest('a[href*="hotmart.com"]');
+  if (a && typeof fbq === 'function') {
+    fbq('track', 'InitiateCheckout', {value: 30, currency: 'USD', content_name: 'Curso de Velas y Jabones Artesanales'});
+  }
+});
+</script>
+</body>
+</html>
