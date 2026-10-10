@@ -663,5 +663,33 @@ document.addEventListener('click', function(e){
   }
 });
 </script>
+<script>
+/* Rastreo Hotmart: pasa src y sck de la URL del anuncio a los botones de Hotmart */
+(function(){
+  var KEYS = ['src','sck'];
+  var params = {};
+  try {
+    var q = new URLSearchParams(window.location.search);
+    var fromUrl = KEYS.some(function(k){ return q.get(k); });
+    KEYS.forEach(function(k){
+      if (fromUrl) {
+        var v = q.get(k);
+        try { if (v) sessionStorage.setItem('hm_'+k, v); else sessionStorage.removeItem('hm_'+k); } catch(e){}
+        if (v) params[k] = v;
+      } else {
+        try { var s = sessionStorage.getItem('hm_'+k); if (s) params[k] = s; } catch(e){}
+      }
+    });
+  } catch(e) { return; }
+  if (!Object.keys(params).length) return;
+  document.querySelectorAll('a[href*="hotmart.com"]').forEach(function(a){
+    try {
+      var u = new URL(a.href);
+      Object.keys(params).forEach(function(k){ u.searchParams.set(k, params[k]); });
+      a.href = u.toString();
+    } catch(e){}
+  });
+})();
+</script>
 </body>
 </html>
